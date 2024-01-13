@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layoutDirection="ltr"
+    app:cardElevation="4dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/image_supcategry"
+            android:src="@color/overview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:background="@color/overview"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/text_name_supcategry"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_width="match_parent"
+                android:text="name"
+                android:textColor="#fff"
+                android:textSize="17dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_price_supcategry"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_width="match_parent"
+                android:text="price"
+                android:textColor="#fff"
+                android:textSize="17dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_discount_supcategry"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_width="match_parent"
+                android:text="discount"
+                android:textColor="#fff"
+                android:textSize="17dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:paddingBottom="10dp"
+                android:maxHeight="55dp"
+                android:id="@+id/text_description_supcategry"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_width="match_parent"
+                android:text="description"
+                android:maxLines="1"
+                android:textColor="#fff"
+                android:textSize="17dp"
+                android:layout_height="wrap_content" />
+
+
+
+
+        </LinearLayout>
+
+
+        <ImageButton
+            android:id="@+id/imagebu_deleet_supcategry"
+            android:layout_margin="8sp"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:background="@android:color/holo_red_dark"
+            android:src="@android:drawable/btn_dialog"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlCompat" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

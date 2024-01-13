@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layoutDirection="ltr"
+    android:layout_height="match_parent"
+    android:background="@drawable/bacalb">
+
+
+    <LinearLayout
+        android:layout_above="@+id/card_cart"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/recycal_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/card_cart"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        app:cardElevation="11dp"
+        app:cardUseCompatPadding="false"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:padding="8dp"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:text="Total : $"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/text_totalprice_cartitem"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:text="0 "
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="8sp"
+                android:layout_marginRight="8sp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:text="Discount: $"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/text_total_dicount_cartitem"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:text="0 "
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_marginLeft="8sp"
+                android:layout_marginRight="8sp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:text="Total due: $"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/text_total_due_cartitem"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:text="0 "
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bu_addtofirebase_cartitem"
+                android:layout_width="match_parent"
+                android:text="Place Order"
+                android:background="@android:color/holo_green_light"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

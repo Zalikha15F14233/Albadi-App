@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "126268142686",
+    "firebase_url": "https://albadi-group-company-default-rtdb.firebaseio.com",
+    "project_id": "albadi-group-company",
+    "storage_bucket": "albadi-group-company.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126268142686:android:5f6ea76d6f43eea55c70cf",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwSOPjIXPpOeKewCNyXyjgE7LE_h9ePxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126268142686:android:47e80f0da9c5fcfc5c70cf",
+        "android_client_info": {
+          "package_name": "com.www.albadiproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwSOPjIXPpOeKewCNyXyjgE7LE_h9ePxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

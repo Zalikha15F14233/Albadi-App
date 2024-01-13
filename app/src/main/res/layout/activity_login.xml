@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".Login">
+
+    <LinearLayout
+        android:background="@color/overview"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginRight="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <!--ImageView
+                    android:src="@drawable/logo_eat_it"
+                    android:layout_width="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_height="111dp"
+                    android:layout_marginBottom="33dp"></ImageView-->
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="95dp"
+                    android:layout_marginBottom="27dp"
+                    android:fontFamily="cursive"
+                    android:text="Albadi"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <EditText
+                    android:text="user1@gmail.com"
+                    android:paddingLeft="5dp"
+                    android:gravity="left"
+                    android:layout_gravity="left"
+                    android:id="@+id/ed_phone_login"
+                    android:inputType="textEmailAddress"
+                    android:hint="Enter Your phone"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp" />
+
+                <EditText
+                    android:text="123456"
+                    android:paddingLeft="5dp"
+                    android:gravity="left"
+                    android:layout_gravity="left"
+                    android:id="@+id/ed_password_login"
+                    android:layout_marginTop="11dp"
+                    android:inputType="textEmailAddress"
+                    android:hint="Enter Your password"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp" />
+
+                <Button
+                    android:id="@+id/ed_login_login"
+                    android:paddingLeft="32dp"
+                    android:paddingRight="32dp"
+                    android:fontFamily="serif"
+                    android:textSize="23dp"
+                    android:layout_marginTop="29dp"
+                    android:inputType="textEmailAddress"
+                    android:text="Login"
+                    android:background="@drawable/busin"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>
