@@ -176,7 +176,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (name_ed.getText().toString().isEmpty() && phone_ed.getText().toString().isEmpty()){
-                    name.setError("Enter Name Food !!");
+                    name.setError("Enter Name Product !!");
                     name.setFocusable(true);
 
                 }else {
@@ -205,7 +205,7 @@ public class Profile extends AppCompatActivity {
         Intent intent=new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Slect Picticer"),Pick_Image);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),Pick_Image);
     }
 
     @Override
@@ -224,7 +224,7 @@ public class Profile extends AppCompatActivity {
 
     private void ChangeImageCat(final EditText name_ed, final EditText phone_ed, final DialogInterface dialogInterface) {
         mDialog=new ProgressDialog(Profile.this);
-        mDialog.setMessage("Uploade...");
+        mDialog.setMessage("Upload...");
         mDialog.show();
         mDialog.setCanceledOnTouchOutside(false);
 
@@ -265,7 +265,7 @@ public class Profile extends AppCompatActivity {
                                         mDialog.dismiss();
 //                                email.setError("Set your Data must have @ and .com");
 //                                password.setError("Must password greater than 6 ");
-                                        Toast.makeText(Profile.this, "trey agin", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Profile.this, "trey again", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -307,7 +307,7 @@ public class Profile extends AppCompatActivity {
                         mDialog.dismiss();
 //                                email.setError("Set your Data must have @ and .com");
 //                                password.setError("Must password greater than 6 ");
-                        Toast.makeText(Profile.this, "trey agin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this, "trey again", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

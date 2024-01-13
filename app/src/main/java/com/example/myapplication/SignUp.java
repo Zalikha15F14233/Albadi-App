@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.ui.Home;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -142,14 +142,14 @@ public class SignUp extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), Home.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
-                                    Toast.makeText(SignUp.this, "add databse", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUp.this, "add database", Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                     finish();
                                 } else {
                                     progressDialog.dismiss();
                                     email.setError("Set your Data must have @ and .com");
                                     password.setError("Must password greater than 6 ");
-                                    Toast.makeText(SignUp.this, "trey agine", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUp.this, "trey again", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

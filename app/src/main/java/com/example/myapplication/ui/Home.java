@@ -317,7 +317,7 @@ public class Home extends AppCompatActivity
         if (saveUri != null){
 
             final ProgressDialog mDialog=new ProgressDialog(Home.this);
-            mDialog.setMessage("Uploade...");
+            mDialog.setMessage("Upload...");
             mDialog.show();
             mDialog.setCanceledOnTouchOutside(false);
 
@@ -351,7 +351,7 @@ public class Home extends AppCompatActivity
                                         mDialog.dismiss();
 //                                email.setError("Set your Data must have @ and .com");
 //                                password.setError("Must password greater than 6 ");
-                                        Toast.makeText(Home.this, "trey agin", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Home.this, "trey again", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -371,7 +371,7 @@ public class Home extends AppCompatActivity
         Intent intent=new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Slect Picticer"),Pick_Image);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),Pick_Image);
     }
     Uri saveUri;
     Button bu_select;

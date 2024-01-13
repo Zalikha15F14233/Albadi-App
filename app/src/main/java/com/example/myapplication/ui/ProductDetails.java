@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database_local.Database_order_local;
-import com.example.myapplication.model.DataFood;
+import com.example.myapplication.model.DataProduct;
 import com.example.myapplication.model.Favorite_Data;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
-public class FoodDetiles extends AppCompatActivity {
+public class ProductDetails extends AppCompatActivity {
 
 
     TextView foodname,foodmony,description,discount;
@@ -46,7 +46,7 @@ public class FoodDetiles extends AppCompatActivity {
 
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    DataFood dataFood;
+    DataProduct dataFood;
 
     FloatingActionButton fab,fab_favoreat;
 
@@ -68,7 +68,7 @@ public class FoodDetiles extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_detiles);
+        setContentView(R.layout.activity_product_detiles);
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -101,14 +101,14 @@ public class FoodDetiles extends AppCompatActivity {
                             }
                         }
                     });
-                    Toast.makeText(FoodDetiles.this, "Add Favorite_Data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetails.this, "Add Favorite_Data", Toast.LENGTH_SHORT).show();
                 }else {
                     DatabaseReference dR = FirebaseDatabase.getInstance().getReference("Favorite").child(firebaseUser.getUid()).child(idCat);
 //                    dR.removeValue();
                     dR. removeValue();
                     fab_favoreat.setImageResource(R.drawable.baseline_star_outline);
                     favorite_chek=null;
-                    Toast.makeText(FoodDetiles.this, "You are remove this item from favorite !!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetails.this, "You are remove this item from favorite !!", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -129,7 +129,7 @@ public class FoodDetiles extends AppCompatActivity {
 
 
 
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Foods");
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Products");
 
         collapsingToolbarLayout=findViewById(R.id.toolbar_layout);
         addBu=findViewById(R.id.add);
@@ -154,13 +154,13 @@ public class FoodDetiles extends AppCompatActivity {
         });
 
 
-        foodimage=findViewById(R.id.foodimage_fooddetels);
-        foodmony=findViewById(R.id.text_money_fooddetelies);
-        foodname=findViewById(R.id.text_foodname_fooddetelies);
-        description=findViewById(R.id.text_descrebtion_fooddetelies);
+        foodimage=findViewById(R.id.productimage_productdetels);
+        foodmony=findViewById(R.id.text_money_productdetelies);
+        foodname=findViewById(R.id.text_productname_productdetelies);
+        description=findViewById(R.id.text_descrebtion_productdetelies);
 //        elegantNumberButton=findViewById(R.id.ElegantNumberButton_fooddescription);
 
-        discount=findViewById(R.id.text_discount_fooddetelies);
+        discount=findViewById(R.id.text_discount_productdetelies);
         linearLayout_discount=findViewById(R.id.liner_decound);
 
         cek_button();// to check if add in cart or not to show button or disable
@@ -171,7 +171,7 @@ public class FoodDetiles extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                database_allnotes=new Database_order_local(FoodDetiles.this);
+                database_allnotes=new Database_order_local(ProductDetails.this);
                 database_allnotes.open();
                 //String name,String id,String amunt,String price,String discription
                 database_allnotes.insert(
@@ -180,7 +180,7 @@ public class FoodDetiles extends AppCompatActivity {
                 );
 
                 cek_button();
-                Toast.makeText(FoodDetiles.this, "Add Cart", Toast.LENGTH_LONG).show();
+                Toast.makeText(ProductDetails.this, "Add Cart", Toast.LENGTH_LONG).show();
 
 //                Snackbar.make(view, "Replace  "+elegantNumberButton.getNumber(), Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
@@ -193,7 +193,7 @@ public class FoodDetiles extends AppCompatActivity {
 
     @SuppressLint("RestrictedApi")
     private void cek_button() {
-        database_allnotes=new Database_order_local(FoodDetiles.this);
+        database_allnotes=new Database_order_local(ProductDetails.this);
         database_allnotes.open();
         if (database_allnotes.cek_isExist_orNot(idCat) == true) {
             fab.setVisibility(View.GONE);
@@ -214,7 +214,7 @@ public class FoodDetiles extends AppCompatActivity {
 
                 ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                 if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected()) {
-                    dataFood=dataSnapshot.getValue(DataFood.class);
+                    dataFood=dataSnapshot.getValue(DataProduct.class);
 
                     Picasso.get().load(dataFood.getImage()).into(foodimage);
 
@@ -231,7 +231,7 @@ public class FoodDetiles extends AppCompatActivity {
                     }
 
                 }else{
-                    Toast.makeText(FoodDetiles.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetails.this, "Check Your Network", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

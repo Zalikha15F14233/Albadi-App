@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class Database_order_local {
 
-        private final static String DATABASE_NAME = "ORDERFOOD";
-        private final static String DATABASE_Table = "orderFood";
+        private final static String DATABASE_NAME = "ORDERPRODUCT";
+        private final static String DATABASE_Table = "orderProduct";
         private final int DATABASE_VERSION = 2;
         private final String KEY_ID = "_id";
 
@@ -101,7 +101,7 @@ public class Database_order_local {
         @SuppressLint("Range")
         public ArrayList getallarrylit_check() {//to get last row
             ArrayList<DataOrderLocal> products = new ArrayList<>();
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderFood", null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderProduct", null);
             if (cursor!=null) {
                 for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                     DataOrderLocal product = new DataOrderLocal();
@@ -135,7 +135,7 @@ public class Database_order_local {
 
     public boolean remove_item(String id_item) {
         boolean chk = false;
-        Cursor cursor = sqLiteDatabase.rawQuery(" DELETE  FROM orderFood"+ " WHERE "
+        Cursor cursor = sqLiteDatabase.rawQuery(" DELETE  FROM orderProduct"+ " WHERE "
                 + KEY_ID + " = '"+ id_item + "'" , null);
 
         if (cursor!=null) {
@@ -158,7 +158,7 @@ public class Database_order_local {
             //Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderFood", null);
 
             boolean chk = false;
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderFood"+ " WHERE " + KEY_prodectID + " = '"+ id + "'" + "  ORDER BY _id DESC LIMIT 1", null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderProduct"+ " WHERE " + KEY_prodectID + " = '"+ id + "'" + "  ORDER BY _id DESC LIMIT 1", null);
 
             if (cursor!=null) {
                 for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {

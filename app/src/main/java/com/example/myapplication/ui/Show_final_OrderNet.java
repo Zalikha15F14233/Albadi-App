@@ -220,7 +220,7 @@ public class Show_final_OrderNet extends AppCompatActivity implements SwipeRefre
 
         FirebaseRecyclerOptions<DataOrderLocal> options =
                 new FirebaseRecyclerOptions.Builder<DataOrderLocal>()
-                        .setQuery(databaseReference.child(idorder_string).child("food"), DataOrderLocal.class)
+                        .setQuery(databaseReference.child(idorder_string).child("Product"), DataOrderLocal.class)
                         .build();
 
         firebaseRecyclerAdapter =
@@ -261,8 +261,8 @@ public class Show_final_OrderNet extends AppCompatActivity implements SwipeRefre
                                 mSwipeRefreshLayout.setRefreshing(false);
 
                                 viewHolder.price.setText("price : "+model.getProdectPrice());
-                                viewHolder.numfood.setText("amount food : "+model.getProdectamount());
-                                viewHolder.namefood.setText("name food : "+model.getProdectname());
+                                viewHolder.numfood.setText("amount Product : "+model.getProdectamount());
+                                viewHolder.namefood.setText("name Product : "+model.getProdectname());
 //                        Picasso.with(getBaseContext()).load(model.getImageurl()).into(viewHolder.images);
                                 Picasso.get().load(model.getImageurl()).into(viewHolder.images);
 

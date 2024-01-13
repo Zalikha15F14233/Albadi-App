@@ -35,21 +35,21 @@
             <TextView
                 android:id="@+id/text_namefood_showfinalorderfromnet"
                 android:layout_width="match_parent"
-                android:text="name food"
+                android:text="name product"
                 android:textColor="#fff"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/text_numfood_showfinalorderfromnet"
                 android:layout_width="match_parent"
-                android:text="num food"
+                android:text="num product"
                 android:textColor="#fff"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/text_price_showfinalorderfromnet"
                 android:layout_width="match_parent"
-                android:text="price food"
+                android:text="price product"
                 android:textColor="#fff"
 
                 android:layout_height="wrap_content" />

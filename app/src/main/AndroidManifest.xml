@@ -33,7 +33,7 @@
             android:name=".ui.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.FoodDetiles"
+            android:name=".ui.ProductDetails"
             android:exported="false" />
         <activity
             android:name=".ui.SupCategory"

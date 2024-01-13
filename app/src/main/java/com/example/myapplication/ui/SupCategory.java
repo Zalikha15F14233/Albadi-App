@@ -87,7 +87,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
 
         recyclerView=findViewById(R.id.recycal_home);
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Foods");
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Products");
         //databaseReference.keepSynced(true);//to catch data if net offline
 
         recyclerView.setHasFixedSize(true);
@@ -133,7 +133,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                 builder.setMessage("Enter Your food");
 
                 LayoutInflater inflater=SupCategory.this.getLayoutInflater();
-                View add_menu=inflater.inflate(R.layout.add_new_food,null);
+                View add_menu=inflater.inflate(R.layout.add_product_food,null);
 
                 name=add_menu.findViewById(R.id.ed_nmaefood_home);
                 discrption =add_menu.findViewById(R.id.ed_decriptionfood_home);
@@ -158,11 +158,11 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
 
                 builder.setView(add_menu);
                 builder.setIcon(R.drawable.ic_shopping);
-                builder.setPositiveButton("Uplode", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Upload", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (name.getText().toString().isEmpty()&&price.getText().toString().isEmpty()){
-                            name.setError("Enter Name Food !!");
+                            name.setError("Enter Name Product !!");
                             name.setFocusable(true);
 
                         }else {
@@ -203,7 +203,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
     private void startUI() {
         FirebaseRecyclerOptions<Data_SupCategrory> options =
                 new FirebaseRecyclerOptions.Builder<Data_SupCategrory>()
-                        .setQuery(databaseReference, Data_SupCategrory.class)
+                        .setQuery(databaseReference.orderByChild("menuId").equalTo(idCat), Data_SupCategrory.class)
                         .build();
 
 
@@ -235,7 +235,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                         viewHolder.setItemOnClickListener(new itemOnClickListener() {
                             @Override
                             public void onClick(View view, int position, boolean isLongClick) {
-                                Intent intent=new Intent(getApplicationContext(), FoodDetiles.class);
+                                Intent intent=new Intent(getApplicationContext(), ProductDetails.class);
                                 intent.putExtra("id",getRef(position).getKey());
                                 //intent.putExtra("true",);
                                 startActivity(intent);
@@ -283,7 +283,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                 ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                 if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected()) {
 
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Foods");
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
                     databaseReference.child(postke).removeValue();
 
                 }else{
@@ -313,7 +313,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
         Intent intent=new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Slect Picticer"),Pick_Image);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),Pick_Image);
     }
 
     @Override
@@ -336,7 +336,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
             if (saveUri != null){
 
                 mDialog=new ProgressDialog(SupCategory.this);
-                mDialog.setMessage("Uploade...");
+                mDialog.setMessage("Upload...");
                 mDialog.show();
                 mDialog.setCanceledOnTouchOutside(false);
 
@@ -349,7 +349,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                         imgeFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                databaseReference = FirebaseDatabase.getInstance().getReference().child("Foods");
+                                databaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
                                 HashMap<String, String> usermap = new HashMap<>();
                                 usermap.put("name", name);
                                 usermap.put("description", description);
@@ -373,7 +373,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                                             finish();
                                         } else {
                                             mDialog.dismiss();
-                                            Toast.makeText(SupCategory.this, "trey agin", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SupCategory.this, "trey again", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -439,7 +439,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                     mDialog.dismiss();
 //                                email.setError("Set your Data must have @ and .com");
 //                                password.setError("Must password greater than 6 ");
-                    Toast.makeText(SupCategory.this, "trey agin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SupCategory.this, "trey again", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -453,7 +453,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
         builder.setMessage("Enter Your Address");
 
         LayoutInflater inflater=SupCategory.this.getLayoutInflater();
-        View add_menu=inflater.inflate(R.layout.add_new_food,null);
+        View add_menu=inflater.inflate(R.layout.add_product_food,null);
 
         name=add_menu.findViewById(R.id.ed_nmaefood_home);
         name.setText(item.getName());
@@ -480,7 +480,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (name.getText().toString().isEmpty()&&price.getText().toString().isEmpty()){
-                    name.setError("Enter Name Food !!");
+                    name.setError("Enter Name Product !!");
                     name.setFocusable(true);
 
                 }else {
@@ -509,7 +509,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
 
     private void ChangeImageCat(final String key, final Data_SupCategrory item, final DialogInterface dialogInterface) {
         mDialog=new ProgressDialog(SupCategory.this);
-        mDialog.setMessage("Uploade...");
+        mDialog.setMessage("Upload...");
         mDialog.show();
         mDialog.setCanceledOnTouchOutside(false);
 
@@ -523,7 +523,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                     imgeFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            databaseReference = FirebaseDatabase.getInstance().getReference().child("Foods").child(key);
+                            databaseReference = FirebaseDatabase.getInstance().getReference().child("Products").child(key);
                             HashMap<String, String> usermap = new HashMap<>();
                             usermap.put("name", item.getName());
                             usermap.put("description", item.getDescription());
@@ -549,7 +549,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                                         mDialog.dismiss();
 //                                email.setError("Set your Data must have @ and .com");
 //                                password.setError("Must password greater than 6 ");
-                                        Toast.makeText(SupCategory.this, "trey agin", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SupCategory.this, "trey again", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -561,7 +561,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
 
 
         }else{
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Foods").child(key);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("Products").child(key);
             HashMap<String, String> usermap = new HashMap<>();
             usermap.put("name", item.getName());
             usermap.put("description", item.getDescription());
@@ -587,7 +587,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                         mDialog.dismiss();
 //                                email.setError("Set your Data must have @ and .com");
 //                                password.setError("Must password greater than 6 ");
-                        Toast.makeText(SupCategory.this, "trey agin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SupCategory.this, "trey again", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

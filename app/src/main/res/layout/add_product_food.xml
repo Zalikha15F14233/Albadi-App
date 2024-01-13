@@ -21,7 +21,7 @@
             android:layout_gravity="left"
             android:id="@+id/ed_nmaefood_home"
             android:inputType="textEmailAddress"
-            android:hint="Name food"
+            android:hint="Name Product"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="55dp" />

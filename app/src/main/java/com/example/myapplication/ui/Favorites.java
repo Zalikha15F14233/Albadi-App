@@ -108,7 +108,7 @@ public class Favorites extends AppCompatActivity implements SwipeRefreshLayout.O
                     @NonNull
                     @Override
                     public Favorite_ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_singel_food, parent, false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_singel_product, parent, false);
                         return new Favorite_ViewHolder(view);
                     }
 
@@ -120,7 +120,7 @@ public class Favorites extends AppCompatActivity implements SwipeRefreshLayout.O
                         mSwipeRefreshLayout.setRefreshing(false);
                         viewHolder.imageFanorit.setImageResource(android.R.drawable.star_big_on);
 
-                        final DatabaseReference databaseReference_favorit = FirebaseDatabase.getInstance().getReference().child("Foods");
+                        final DatabaseReference databaseReference_favorit = FirebaseDatabase.getInstance().getReference().child("Products");
                         //databaseReference_favorit .child(firebaseUser.getUid());
                         //  databaseReference_favorit .child("Favorite_Data");
                         databaseReference_favorit.child(model.getId_item()).addValueEventListener(new ValueEventListener() {
@@ -133,7 +133,9 @@ public class Favorites extends AppCompatActivity implements SwipeRefreshLayout.O
                                 Data_Favorite example = new Gson().fromJson(json, Data_Favorite.class);
                                 Log.e("json", "@@@json: _________>" + json);
 
-                                viewHolder.posttext.setText(dataSnapshots.child("name").getValue().toString());
+                                viewHolder.posttext.setText(
+                                        dataSnapshots.child("name").getValue().toString()
+                                );
 //                                Picasso.with(getBaseContext()).load(dataSnapshots.child("image").getValue().toString()).into(viewHolder.images);
                                 Picasso.get().load(dataSnapshots.child("image").getValue().toString()).into(viewHolder.images);
 
@@ -141,7 +143,7 @@ public class Favorites extends AppCompatActivity implements SwipeRefreshLayout.O
                                     @Override
                                     public void onClick(View view, int position, boolean isLongClick) {
                                         // Toast.makeText(SingelItem.this, ""+model.getName(), Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), FoodDetiles.class);
+                                        Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
                                         intent.putExtra("id", getRef(position).getKey());
                                         //intent.putExtra("true",);
                                         startActivity(intent);

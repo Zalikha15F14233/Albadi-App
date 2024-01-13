@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-public class DataFood {
+public class DataProduct {
 
    String description,
             discount,
@@ -10,11 +10,11 @@ public class DataFood {
             price;
 
 
-    public DataFood() {
+    public DataProduct() {
     }
 
 
-    public DataFood(String description, String discount, String image, String menuId, String name, String price) {
+    public DataProduct(String description, String discount, String image, String menuId, String name, String price) {
         this.description = description;
         this.discount = discount;
         this.image = image;

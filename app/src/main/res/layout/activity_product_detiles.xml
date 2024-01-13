@@ -25,7 +25,7 @@
 
             <ImageView
                 android:scaleType="fitXY"
-                android:id="@+id/foodimage_fooddetels"
+                android:id="@+id/productimage_productdetels"
                 android:layout_width="match_parent"
                 android:layout_height="250dp" />
 
@@ -64,7 +64,7 @@
 
 
 
-    <!--include layout="@layout/content_food_detiles" /-->
+    <!--include layout="@layout/content_product_detiles" /-->
 
 
     <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -75,7 +75,7 @@
         android:background="#fffff3"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".UI.FoodDetiles"
-        tools:showIn="@layout/activity_food_detiles">
+        tools:showIn="@layout/activity_product_detiles">
 
 
         <LinearLayout
@@ -97,14 +97,14 @@
                     >
 
                     <TextView
-                        android:id="@+id/text_foodname_fooddetelies"
+                        android:id="@+id/text_productname_productdetelies"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp"
                         android:padding="12dp"
                         android:textColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
-                        android:text="Food name"
+                        android:text="Product name"
                         android:layout_height="wrap_content" />
 
                     <LinearLayout
@@ -119,7 +119,7 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
-                            android:id="@+id/text_money_fooddetelies"
+                            android:id="@+id/text_money_productdetelies"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimary"
@@ -146,7 +146,7 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
-                            android:id="@+id/text_discount_fooddetelies"
+                            android:id="@+id/text_discount_productdetelies"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:textColor="#000"
@@ -211,7 +211,7 @@
 
                     <TextView
                         android:padding="12dp"
-                        android:id="@+id/text_descrebtion_fooddetelies"
+                        android:id="@+id/text_descrebtion_productdetelies"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="@color/cardview_dark_background"

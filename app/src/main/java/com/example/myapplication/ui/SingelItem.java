@@ -1,13 +1,6 @@
 package com.example.myapplication.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.myapplication.InterFace.itemOnClickListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.example.myapplication.R;
 import com.example.myapplication.ViewHolder.Food_singelViewHolder;
-import com.example.myapplication.ViewHolder.MenuViewHolder;
-import com.example.myapplication.model.DataFood;
-import com.example.myapplication.model.Data_Category;
+import com.example.myapplication.model.DataProduct;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,7 +55,7 @@ public class SingelItem extends AppCompatActivity implements SwipeRefreshLayout.
 
         recyclerView=findViewById(R.id.recycal_home1);
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Foods");
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Products");
         //databaseReference.keepSynced(true);//to catch data if net offline
 
         recyclerView.setHasFixedSize(true);
@@ -96,21 +92,21 @@ public class SingelItem extends AppCompatActivity implements SwipeRefreshLayout.
         startUI();
     }
 
-    private FirebaseRecyclerAdapter<DataFood, Food_singelViewHolder> firebaseRecyclerAdapter;
+    private FirebaseRecyclerAdapter<DataProduct, Food_singelViewHolder> firebaseRecyclerAdapter;
 
     private void startUI() {
-        FirebaseRecyclerOptions<DataFood> options =
-                new FirebaseRecyclerOptions.Builder<DataFood>()
-                        .setQuery(databaseReference.orderByChild("menuId").equalTo(idCat), DataFood.class)
+        FirebaseRecyclerOptions<DataProduct> options =
+                new FirebaseRecyclerOptions.Builder<DataProduct>()
+                        .setQuery(databaseReference.orderByChild("menuId").equalTo(idCat), DataProduct.class)
                         .build();
 
 
 //        FirebaseRecyclerAdapter<Data_Category, MenuViewHolder>
         firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<DataFood, Food_singelViewHolder>(options) {
+                new FirebaseRecyclerAdapter<DataProduct, Food_singelViewHolder>(options) {
 
                     @Override
-                    protected void onBindViewHolder(@NonNull Food_singelViewHolder viewHolder, int position, DataFood model) {
+                    protected void onBindViewHolder(@NonNull Food_singelViewHolder viewHolder, int position, DataProduct model) {
 
                         final String postKey = getRef(position).getKey();
 

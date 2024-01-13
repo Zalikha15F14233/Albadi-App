@@ -78,7 +78,7 @@
             android:layout_marginLeft="3dp"
             android:background="@drawable/busin"
             android:textColor="#fff"
-            android:text="Sighup"
+            android:text="Sign Up"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
