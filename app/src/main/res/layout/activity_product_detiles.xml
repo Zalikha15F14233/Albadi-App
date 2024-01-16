@@ -157,6 +157,33 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:padding="12dp"
+                        android:id="@+id/liner_quantity"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="Quantity : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/text_quantity_productdetelies"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_width="0dp"
+                            android:layout_weight="9"
+                            android:text="0"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_marginBottom="20dp"

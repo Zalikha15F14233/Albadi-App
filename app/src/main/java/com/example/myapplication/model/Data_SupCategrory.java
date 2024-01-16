@@ -8,6 +8,7 @@ public class Data_SupCategrory {
     String menuId;
     String name;
     String price;
+    String quantity;
 
 
 
@@ -17,13 +18,22 @@ public class Data_SupCategrory {
     public Data_SupCategrory() {
     }
 
-    public Data_SupCategrory(String description, String discount, String image, String menuId, String name, String price) {
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public Data_SupCategrory(String quantity, String description, String discount, String image, String menuId, String name, String price) {
         this.description = description;
         this.discount = discount;
         this.image = image;
         this.menuId = menuId;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public String getId_food() {

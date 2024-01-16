@@ -42,7 +42,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View view) {
-        itemOnClickListener.onClick(view,getAdapterPosition(),false);
+//        itemOnClickListener.onClick(view,getAdapterPosition(),false);
 
     }
 }

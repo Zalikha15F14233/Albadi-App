@@ -7,6 +7,7 @@ public class DataProduct {
             image,
             menuId,
             name,
+           quantity,
             price;
 
 
@@ -14,13 +15,14 @@ public class DataProduct {
     }
 
 
-    public DataProduct(String description, String discount, String image, String menuId, String name, String price) {
+    public DataProduct(String description,String quantity, String discount, String image, String menuId, String name, String price) {
         this.description = description;
         this.discount = discount;
         this.image = image;
         this.menuId = menuId;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public String getDescription() {
@@ -33,6 +35,14 @@ public class DataProduct {
 
     public String getDiscount() {
         return discount;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public void setDiscount(String discount) {

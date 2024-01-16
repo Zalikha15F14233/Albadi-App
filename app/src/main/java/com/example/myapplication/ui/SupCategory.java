@@ -62,7 +62,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
     FirebaseRecyclerAdapter<Data_SupCategrory, SupCategory_ViewHolder> adabtor;
 
     String idCat;
-    EditText name, discrption,price,descount;
+    EditText quantity,name, discrption,price,descount;
     Button bu_select;
 
     Uri saveUri=null;
@@ -130,12 +130,13 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
             public void onClick(View view) {
                 final AlertDialog.Builder builder=new AlertDialog.Builder(SupCategory.this);
                 builder.setTitle("One More Step!");
-                builder.setMessage("Enter Your food");
+                builder.setMessage("Enter Your Product");
 
                 LayoutInflater inflater=SupCategory.this.getLayoutInflater();
-                View add_menu=inflater.inflate(R.layout.add_product_food,null);
+                View add_menu=inflater.inflate(R.layout.add_product,null);
 
                 name=add_menu.findViewById(R.id.ed_nmaefood_home);
+                quantity=add_menu.findViewById(R.id.ed_quantity_home);
                 discrption =add_menu.findViewById(R.id.ed_decriptionfood_home);
                 price=add_menu.findViewById(R.id.ed_pricefood_home);
                 descount=add_menu.findViewById(R.id.ed_nmaemenu_home);
@@ -170,6 +171,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                                     discrption.getText().toString().trim(),
                                     price.getText().toString().trim(),
                                     descount.getText().toString().trim(),
+                                    quantity.getText().toString().trim(),
                                     dialogInterface
                             );
                         }
@@ -329,7 +331,8 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
 
     }
 
-    private void upoladeImage(final String name, final String description, final String price, final String descunte, final DialogInterface dialogInterface) {
+    private void upoladeImage(final String name, final String description,
+                              final String price, final String descunte,final String quantity, final DialogInterface dialogInterface) {
 
         ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected()) {
@@ -356,6 +359,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                                 usermap.put("price", price);
                                 usermap.put("menuId", idCat);
                                 usermap.put("discount", descunte);
+                                usermap.put("quantity", quantity);
                                 usermap.put("image",uri.toString());
 
                                 databaseReference.push().setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -453,10 +457,12 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
         builder.setMessage("Enter Your Address");
 
         LayoutInflater inflater=SupCategory.this.getLayoutInflater();
-        View add_menu=inflater.inflate(R.layout.add_product_food,null);
+        View add_menu=inflater.inflate(R.layout.add_product,null);
 
         name=add_menu.findViewById(R.id.ed_nmaefood_home);
         name.setText(item.getName());
+        quantity=add_menu.findViewById(R.id.ed_quantity_home);
+        quantity.setText(item.getQuantity());
         discrption =add_menu.findViewById(R.id.ed_decriptionfood_home);
         discrption.setText(item.getDescription());
         price=add_menu.findViewById(R.id.ed_pricefood_home);
@@ -487,6 +493,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                     ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                     if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected()) {
                         item.setName(name.getText().toString().trim());
+                        item.setQuantity(quantity.getText().toString().trim());
                         item.setDescription(discrption.getText().toString().trim());
                         item.setDiscount(descount.getText().toString().trim());
                         item.setMenuId(key);
@@ -530,6 +537,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
                             usermap.put("price", item.getPrice());
                             usermap.put("menuId", idCat);
                             usermap.put("discount", item.getDiscount());
+                            usermap.put("quantity", item.getQuantity());
                             usermap.put("image",uri.toString());
 
                             databaseReference.setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -568,6 +576,7 @@ public class SupCategory extends AppCompatActivity implements SwipeRefreshLayout
             usermap.put("price", item.getPrice());
             usermap.put("menuId", idCat);
             usermap.put("discount", item.getDiscount());
+            usermap.put("quantity", item.getQuantity());
             usermap.put("image",item.getImage());
 
             databaseReference.setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {

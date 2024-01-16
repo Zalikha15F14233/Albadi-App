@@ -41,6 +41,15 @@
                 android:paddingRight="6dp"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:textColor="#000"
+                android:id="@+id/text_total_finalorder"
+                android:layout_width="match_parent"
+                android:text="Total:-"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:layout_height="wrap_content" />
+
 
 
         </LinearLayout>

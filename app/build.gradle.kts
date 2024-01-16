@@ -107,6 +107,14 @@ dependencies {
 
 
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.braintreepayments:card-form:5.4.0")
+    implementation("com.itextpdf:itext7-core:7.1.15")
+    // to create fatora <pdf>
+//    implementation("com.itextpdf:itextg:5.5.10")
+    //connection class use with cretae fatord
+//    implementation 'net.sourceforge.jtds:jtds:1.3.1'
+
+
     // or use the support library version
      //noinspection GradleCompatible
 

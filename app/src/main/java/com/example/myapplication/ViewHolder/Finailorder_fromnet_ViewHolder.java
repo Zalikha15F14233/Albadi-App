@@ -11,8 +11,8 @@ import com.example.myapplication.R;
 
 public class Finailorder_fromnet_ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView namefood,numfood,price;
-    public ImageView images;
+    public TextView namefood,numfood,price,text_des;
+    public ImageView images,imageprint;
 
     com.example.myapplication.InterFace.itemOnClickListener itemOnClickListener;
 
@@ -23,8 +23,10 @@ public class Finailorder_fromnet_ViewHolder extends RecyclerView.ViewHolder impl
         namefood=(TextView) itemView.findViewById(R.id.text_namefood_showfinalorderfromnet);
         numfood=(TextView) itemView.findViewById(R.id.text_numfood_showfinalorderfromnet);
         price=(TextView) itemView.findViewById(R.id.text_price_showfinalorderfromnet);
+        text_des=(TextView) itemView.findViewById(R.id.text_des);
 
         images= (ImageView) itemView.findViewById(R.id.image_showfinalorderfromnet);
+        imageprint= (ImageView) itemView.findViewById(R.id.image_print_finalorder_fromnet);
 
 
 

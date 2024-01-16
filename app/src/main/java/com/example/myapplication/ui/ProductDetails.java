@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,7 +37,7 @@ import java.util.HashMap;
 public class ProductDetails extends AppCompatActivity {
 
 
-    TextView foodname,foodmony,description,discount;
+    TextView foodname,foodmony,description,discount,quantity;
 //    ElegantNumberButton elegantNumberButton;
     ImageView foodimage;
 
@@ -62,6 +63,7 @@ public class ProductDetails extends AppCompatActivity {
     TextView num;
     int numFinal=1;
     ImageButton addBu,minimizeBu;
+    int quantityTotal=0;
     //databaseReference.child(key).removeValue();
 
     @SuppressLint("RestrictedApi")
@@ -137,8 +139,13 @@ public class ProductDetails extends AppCompatActivity {
         addBu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numFinal=numFinal+1;
-                num.setText(""+numFinal);
+                if(quantityTotal>numFinal){
+                    numFinal=numFinal+1;
+                    num.setText(""+numFinal);
+                }else{
+                    Toast.makeText(ProductDetails.this, "Out of stock", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
         minimizeBu=findViewById(R.id.minimize);
@@ -154,6 +161,7 @@ public class ProductDetails extends AppCompatActivity {
         });
 
 
+
         foodimage=findViewById(R.id.productimage_productdetels);
         foodmony=findViewById(R.id.text_money_productdetelies);
         foodname=findViewById(R.id.text_productname_productdetelies);
@@ -161,6 +169,7 @@ public class ProductDetails extends AppCompatActivity {
 //        elegantNumberButton=findViewById(R.id.ElegantNumberButton_fooddescription);
 
         discount=findViewById(R.id.text_discount_productdetelies);
+        quantity=findViewById(R.id.text_quantity_productdetelies);
         linearLayout_discount=findViewById(R.id.liner_decound);
 
         cek_button();// to check if add in cart or not to show button or disable
@@ -169,21 +178,23 @@ public class ProductDetails extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(quantityTotal>0) {
+                    database_allnotes = new Database_order_local(ProductDetails.this);
+                    database_allnotes.open();
+                    //String name,String id,String amunt,String price,String discription
+                    database_allnotes.insert(
+                            dataFood.getName(), idCat, String.valueOf(numFinal),
+                            dataFood.getPrice(), dataFood.getDiscount(), image_url
+                    );
 
-
-                database_allnotes=new Database_order_local(ProductDetails.this);
-                database_allnotes.open();
-                //String name,String id,String amunt,String price,String discription
-                database_allnotes.insert(
-                        dataFood.getName(),idCat, String.valueOf(numFinal),
-                        dataFood.getPrice(),dataFood.getDiscount(),image_url
-                );
-
-                cek_button();
-                Toast.makeText(ProductDetails.this, "Add Cart", Toast.LENGTH_LONG).show();
+                    cek_button();
+                    Toast.makeText(ProductDetails.this, "Add Cart", Toast.LENGTH_LONG).show();
 
 //                Snackbar.make(view, "Replace  "+elegantNumberButton.getNumber(), Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
+                }else{
+                    Toast.makeText(ProductDetails.this, num.getText(), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -219,7 +230,7 @@ public class ProductDetails extends AppCompatActivity {
                     Picasso.get().load(dataFood.getImage()).into(foodimage);
 
                     image_url=dataFood.getImage();
-                    foodmony.setText(dataFood.getPrice());
+                    foodmony.setText(dataFood.getPrice()+"  OMR  ");
                     foodname.setText(dataFood.getName());
                     description.setText(dataFood.getDescription());
                     collapsingToolbarLayout.setTitle(dataFood.getName());
@@ -227,7 +238,30 @@ public class ProductDetails extends AppCompatActivity {
                     if (dataFood.getDescription().equals("")){
                         linearLayout_discount.setVisibility(View.GONE);
                     }else{
-                        discount.setText(dataFood.getDiscount());
+                        discount.setText(dataFood.getDiscount()+" OMR");
+                    }
+
+                    if (dataSnapshot.hasChild("quantity")) {
+//                        final String emailUser=dataSnapshot.child("quantity").getValue(String.class).toString();
+                        quantity.setText(dataFood.getQuantity().toString());
+                        quantityTotal=Integer.parseInt(dataFood.getQuantity().toString());
+                    }else{
+                        quantity.setText("0");
+                        quantityTotal=0;
+                        num.setText(""+quantityTotal);
+                        num.setText("Out of stock");
+//                        num.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                        LinearLayout.LayoutParams textParam = new LinearLayout.LayoutParams
+                                (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+                        num.setLayoutParams(textParam);
+                        if(quantityTotal==0){
+                            minimizeBu.setVisibility(View.GONE);
+                            addBu.setVisibility(View.GONE);
+                            num.setText("Out of stock");
+                        }
+//                        num.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+//                        num.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+
                     }
 
                 }else{

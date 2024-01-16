@@ -2,6 +2,7 @@ package com.example.myapplication.ui;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.braintreepayments.cardform.view.CardForm;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.daimajia.swipe.util.Attributes;
 import com.example.myapplication.R;
@@ -34,7 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
+import java.util.Locale;
 
 
 public class CartActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener  {
@@ -70,7 +72,7 @@ public class CartActivity extends AppCompatActivity implements SwipeRefreshLayou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
+        setLocale("en");
         auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Request");
@@ -131,7 +133,17 @@ public class CartActivity extends AppCompatActivity implements SwipeRefreshLayou
         View add_menu=inflater.inflate(R.layout.add_order,null);
 
         my_location=add_menu.findViewById(R.id.ed_me_location_addorder);
+        CardForm cardForm = (CardForm) add_menu.findViewById(R.id.card_form);
+        cardForm.cardRequired(true)
+                .expirationRequired(true)
+                .cvvRequired(true)
+                .cardholderName(CardForm.FIELD_REQUIRED)
+                .postalCodeRequired(true)
+                .mobileNumberRequired(true)
+                .mobileNumberExplanation("SMS is required on this number")
+                .actionLabel("Purchase")
 
+                .setup(CartActivity.this);
 
 
         builder1.setView(add_menu);
@@ -142,9 +154,9 @@ public class CartActivity extends AppCompatActivity implements SwipeRefreshLayou
                 if (my_location.getText().toString().isEmpty()&&my_location.getText().toString().isEmpty()){
                     my_location.setError("Enter Your location !!");
                     my_location.setFocusable(true);
-
+                }if (!cardForm.isValid()) {
+                    Toast.makeText(CartActivity.this, "Please complete the form", Toast.LENGTH_LONG).show();
                 }else {
-
                     database_allnotes = new Database_order_local(CartActivity.this);
                     database_allnotes.open();
                     mDataSet = database_allnotes.getallarrylit_check();
@@ -155,7 +167,15 @@ public class CartActivity extends AppCompatActivity implements SwipeRefreshLayou
                             ,firebaseUser.getUid()
                             , my_location.getText().toString().trim()
                             , totalprice.getText().toString().trim()
-                            , mDataSet
+                            , mDataSet ,
+                            cardForm.getCardNumber(),
+                            cardForm.getExpirationMonth(),
+                            cardForm.getExpirationYear(),
+                            cardForm.getCvv(),
+                            cardForm.getCardholderName(),
+                            cardForm.getPostalCode(),
+                            cardForm.getCountryCode(),
+                            cardForm.getMobileNumber()
                     );
 
                     databaseReference.child(String.valueOf(System.currentTimeMillis())).setValue(dataReqeste);
@@ -204,7 +224,7 @@ public class CartActivity extends AppCompatActivity implements SwipeRefreshLayou
                 dis += discount;
                 total_discount.setText("" + dis);
 
-                total_due.setText(""+(x+dis));
+                total_due.setText(""+(x-dis));
             }
         }
 
@@ -337,6 +357,19 @@ public class CartActivity extends AppCompatActivity implements SwipeRefreshLayou
                 deleate = itemView.findViewById(R.id.image_deleatfrom_cart);
             }
         }
+    }
+
+
+
+
+
+    private void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+
+        Configuration configuration = getResources().getConfiguration();
+        configuration.setLocale(locale);
+        getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
     }
 }
 

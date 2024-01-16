@@ -5,33 +5,47 @@
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            app:cardCornerRadius="3dp"
-            app:cardUseCompatPadding="true"
-            android:layout_height="wrap_content">
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            app:cardCornerRadius="3dp"-->
+<!--            app:cardUseCompatPadding="true"-->
+<!--            android:layout_height="wrap_content">-->
+           <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:hint="enter your location"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textColorHint="#ddd"
-                android:id="@+id/ed_me_location_addorder"
-                android:layout_height="wrap_content" />
 
-        </androidx.cardview.widget.CardView>
+               <EditText
+                   android:layout_width="match_parent"
+                   android:hint="enter your location"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:textColor="#000"
+                   android:textColorHint="#ddd"
+                   android:background="@drawable/ed_login"
+                   android:id="@+id/ed_me_location_addorder"
+                   android:layout_height="40dp" />
+
+               <com.braintreepayments.cardform.view.CardForm
+                   android:id="@+id/card_form"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content" />
+           </LinearLayout>
+
+
+
+<!--        </androidx.cardview.widget.CardView>-->
 
 
 
